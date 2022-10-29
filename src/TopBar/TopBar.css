@@ -1,0 +1,244 @@
+
+.top--wrapper{
+
+  /* topbar position fix */
+    display: flex;
+    top: 0px;
+    position: fixed;
+    width: 100%;
+    background-color: #1a1e1de6;
+    z-index: 1;
+  flex-direction: row;
+    justify-content: space-between;
+
+}
+.nav--wrapper{
+  display: flex;
+  align-items: center;
+  gap:1.5rem;
+
+
+
+}
+
+/* .;;search--wrapper{ */
+/*   flex: 1; */
+/* } */
+
+/* .left--wrapper{ */
+/*   flex:8; */
+
+/* } */
+/* .right--wrapper{ */
+/*   flex: 2.2 3; */
+
+/* } */
+/* .upload--wrapper{ */
+/*   flex : 1; */
+/* } */
+
+/* .ranklist--wrapper{ */
+/*   flex: 2; */
+/* } */
+
+.inner--left--wrapper{
+  display: flex;
+  align-items: center;
+}
+
+.uploadFloat{
+ /*  loginBtn  */
+  padding-block: min(3.6vw, 0.5rem);
+  padding-inline: min(10vw,1.7rem);
+  margin-inline-end: 2.5rem;
+
+  border-color: #faa300!important;
+ border-radius: 3px; 
+  text-decoration: none;
+  border-style: none;
+  background-color: #faa300!important;
+}
+
+.rankerList{
+  color: #FAA300;
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+.iconName{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-inline: 10px;
+}
+
+.spanText{
+  color: white;
+}
+
+.logo{
+  color: white;
+}
+.logoImage{
+  position: absolute;
+  top:0;
+  width: 62px;
+  height: 62px
+}
+
+
+.animationlogo { 
+  top:0;
+  width: 4rem;
+  min-height: 4rem;
+  background-size: cover;
+  background-repeat: no-repeat;
+  animation: changeBg 0.7s infinite; }
+  @keyframes changeBg{
+   0%,100%  {background-image: url("../assets/logo.webp");}
+   90% {background-image: url("../assets/logo2.webp");}
+}
+
+
+.logoText{
+    -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* Internet Explorer/Edge*/
+   user-select: none;
+   -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+   -user-drag: none;
+
+  white-space: pre;
+
+  display: inline-block;
+    font-family: 'Monoton', cursive;
+
+ font-family: 'Monoton', cursive;
+  text-align: center;
+  text-transform: uppercase;
+  /* text-shadow: 0 0 80px red,0 0 30px FireBrick,0 0 6px DarkRed; */
+  color: red;
+
+
+}
+
+
+
+.logoText:hover {
+    text-shadow: 0 0 200px rgb(255, 254, 254),0 0 80px rgb(255, 254, 254),0 0 6px #FFF381, 0px -0.001px 2px #FFF381 ; 
+
+}
+.logoText:active > #ascedance  +#forum > .dimO {
+  text-shadow: none;
+  
+}
+
+
+
+/* .logoText:active > #ascedance   { */
+/*   text-shadow: none; */
+/* }  */
+
+.uShape:hover {
+
+    text-shadow: 0 0 200px rgb(255, 254, 254),0 0 80px rgb(255, 254, 254),0 0 6px #FFF381, 0px -0.001px 2px #FFF381 ; 
+}
+ #forum .dimO {
+
+  animation: upper 6s linear infinite;
+  
+}
+
+
+#ascedance {
+
+  color: #fff;
+  /* text-shadow: 0 0 80px #ffffff,0 0 30px #008000,0 0 6px #0000ff; */
+
+}
+
+/* #ascedance:hover{ */
+/*     text-shadow: 0 0 200px rgb(255, 254, 254),0 0 80px rgb(255, 254, 254),0 0 6px #FFF381, 0px -0.001px 2px #19F381 ;  */
+
+/* } */
+
+@keyframes upper {
+  0%,19.999%,22%,62.999%,64%, 64.999%,70%,100% {
+    opacity:.99; text-shadow: 0 0 80px #ffffff,0 0 30px #008000,0 0 6px #0000ff;
+  }
+  20%,21.999%,63%,63.999%,65%,69.999% {
+    opacity:0.4; text-shadow: none; 
+  }
+}
+
+
+@media (max-width: 58rem){
+ .mob-nav-bar{
+    display: block !important ;
+  z-index: 1;
+
+
+  }
+  .nav--wrapper[data-visible="true"]{
+
+    transform: translateX(0%);
+  }
+
+  .nav--wrapper{
+    overflow-y:scroll;
+    inset: 0 0 0 20%;
+    position: fixed;
+    padding: min(12vh, 10rem) 1em;
+    background: steelblue;
+    align-items: baseline;
+    flex-direction: column;
+    gap: 5em;
+ background: hsl(0 0% 16% / 97%);
+    transform: translateX(100%);
+    
+  }
+ 
+}
+@supports(backdrop-filter:blur(2rem) ){
+  .mob-nav-bar{
+
+ background: hsl(0 0% 16% / 97%);
+    backdrop-filter: blur(2px);
+  }
+}
+
+.mob-nav-bar{
+display: none;
+
+  z-index:22;
+  background-color: gold;
+  padding: 20px;
+}
+
+
+.search--wrapper{
+  align-items: center;
+  display: flex;
+  
+  height: 20px;
+  border-radius: 20px;
+  background-color: white;
+  padding-block: 0.4rem;
+  padding-inline: 16px;
+  
+}
+.searchInputTopbar{
+  outline: none;
+    width: min(16vw, 30vmax );
+  border: none;
+}
+
+.search--wrapper--box{
+  display: flex;
+  align-items: center;
+}

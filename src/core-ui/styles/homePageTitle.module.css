@@ -1,0 +1,67 @@
+.logoTextHome{
+    -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* Internet Explorer/Edge*/
+   user-select: none;
+   -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+   -user-drag: none;
+  white-space: pre;
+  display: block;
+  font-family: 'Monoton', cursive;
+  text-align: center;
+  text-transform: uppercase;
+  text-shadow: 0 0 80px red,0 0 30px FireBrick,0 0 6px DarkRed;
+  color: red;
+  padding: 1em 5% 1em;
+  
+  font-size: var(--fs-xxl);
+
+}
+
+
+
+.logoTextHome:hover {
+    text-shadow: 0 0 200px rgb(255, 254, 254),0 0 80px rgb(255, 254, 254),0 0 6px #FFF381, 0px -0.001px 2px #FFF381 ; 
+}
+.logoTextHome:active > #ascedance  +#forum > .dimO {
+  text-shadow: none;
+  
+}
+
+
+
+/* .logoText:active > #ascedance   { */
+/*   text-shadow: none; */
+/* }  */
+
+ #forum .dimO  {
+  will-change:opacity,text-shadow;
+}
+.uShape:hover {
+    text-shadow: 0 0 200px rgb(255, 254, 254),0 0 80px rgb(255, 254, 254),0 0 6px #FFF381, 0px -0.001px 2px #FFF381 ; 
+}
+
+#ascedance {
+  color: #fff;
+  text-shadow: 0 0 80px #ffffff,0 0 30px #008000,0 0 6px #0000ff;
+}
+
+/* #ascedance:hover{ */
+/*     text-shadow: 0 0 200px rgb(255, 254, 254),0 0 80px rgb(255, 254, 254),0 0 6px #FFF381, 0px -0.001px 2px #19F381 ;  */
+
+/* } */
+
+@keyframes upper {
+  0%,19.999%,22%,62.999%,64%, 64.999%,70%,100% {
+    opacity:.99; text-shadow: 0 0 80px #ffffff,0 0 30px #008000,0 0 6px #0000ff;
+  }
+  20%,21.999%,63%,63.999%,65%,69.999% {
+    opacity:0.4; text-shadow: none; 
+  }
+}
+

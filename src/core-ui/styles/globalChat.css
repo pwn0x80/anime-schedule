@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,700;0,900;1,200&display=swap');
+.chatBox{
+  display: flex;
+
+    justify-content: space-around;
+}
+
+.chatBox .EmojiPickerReact {
+  --epr-picker-height: 240px;
+--epr-emoji-size:15px;
+--epr-preview-height:12px;
+--epr-picker-width: 200px;
+--epr-category-navigation-button-size: 20px;
+}
+
+.show-emoji {
+  padding-bottom: 15px;
+}
+
+.chatBox__textBox{
+  justify-content: space-between;
+  display: flex;
+  background-color: white;
+  padding-inline: 16px;
+  padding-block: 0.4rem;
+  border-radius: 20px;
+
+  
+}
+.chatBox__textBox--input{
+width: clamp(12vw,35vmax,-14rem);
+
+  outline: none;
+  border: none;
+}
+.chatBox__textBox--input:focus{
+  outline: none;
+  border: none;
+}
+
+
+.chatBox__textBox--btn{
+  background-color: white;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  color: hsl(195deg 100% 42%);
+  font-weight: bold;
+
+}
+
+
+.emoji--chat{
+  position: absolute;
+  bottom:0;
+
+
+}
+
+.chatBox--wrapper{
+  width: 60%;
+  min-width: 300px;
+
+
+}
+
+
+.chatBox--wrapper__chat{
+
+  position: relative;
+scrollbar-width: thin;
+    color: #D0E4F8;
+  background-color: #0A0D1A;
+
+    box-shadow: rgb(84 78 78) 3px 2px 4px 1px;
+  border-radius:20px;
+  padding: 1rem;
+  
+  height: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+}
+
+.chatBox--wrapper__chat::-webkit-scrollbar {
+width: 2px;
+}
+.chatBox--wrapper__chat::-webkit-scrollbar-thumb { background-color: grey;
+}
+.chatBox--wrapper__chat::-webkit-scrollbar-track { background-color:black;
+}
+.message--userId{
+  cursor: pointer;
+}
+
+.profileImg{
+  size: 10px;
+    width: 1rem;
+    height: 1rem;
+  border-radius: 20px;
+}
+.userNameBox{
+  padding-left: 10px;
+  font-family: 'Titillium Web', sans-serif;
+}
+
+.ownclass{
+  text-align: right;
+}
+.userMessage{
+  font-weight: 200;
+}
+.emojiSelect{
+  position:absolute;
+  width: 10px;
+}
+.emojiSelector{
+    width: 252px;
+    height: 335px;
+}
