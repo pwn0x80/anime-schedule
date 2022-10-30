@@ -26,7 +26,7 @@ const Card = forwardRef((props, ref) => {
   const { data } = props;
   // console.log(data.images?.webp?.image_url)
   return (
-    <CardContainer>
+    <CardContainer ref={ref} >
       <CardImage imgUrl={data.images.webp.large_image_url}>
       </CardImage>
       <div style={{ overflowWrap: 'break-word', width: '160px' }} >

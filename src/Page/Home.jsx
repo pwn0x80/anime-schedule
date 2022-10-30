@@ -116,6 +116,7 @@ let MainPageWrape = ({ storeData, customParams }) => {
   const dispatch = useDispatch()
   const { scrollFetch, setScrollFetch, InfiniteScroll } = useInfiniteScroller()
   useEffect(() => {
+    console.log("hi")
     if (storeData.pagination.has_next_page == false) return
     dispatch(fetchSchedules(customParams))
     customParams.page = customParams.page + 1
