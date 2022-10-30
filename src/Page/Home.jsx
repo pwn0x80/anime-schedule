@@ -14,80 +14,56 @@ import Card from "../components/Card/Card"
 import { fetchSchedules, fetchTopAnime } from "../redux/thunk";
 import { getTopAnime } from "../redux/reducers";
 
+import RightBar from "../components/RightBar/RightBar";
+const SidebarWrapper = styled.div`
+display:none;
+    @media(min-width:50em){
+display:block;
+    }
+`;
+
 const GridWrapper = styled.div`
 display: grid;
-grid-column:2/5;
-
-  
-  
-grid-gap:9px;
-
-/* display:grid; */
-
-    /* font-size: 7px; */
-/* grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); */
+grid-gap:0.5rem;
+grid-column: 1/6;
       grid-template-columns: repeat(auto-fill, minmax(min(400px/1, max(64px, 800px/5)), 1fr));
-    /* grid-auto-rows: auto; */
-/* grid-auto-columns:1px; */
-/* grid-template-columns: repeat(3, 1fr); */
-/* grid-template-columns: repeat(auto-fit, minmax(160px, 160px)); */
- /* grid-column: 1 / 6; /* adjustment */ */
-  /* grid-row: 1 / 3;    /* adjustment */ */
-    /* max-width: 1000px; */
-/* grid-auto-columns: 75px; */
-/* grid-auto-flow: column; */
-/* grid-template-columns: repeat(auto-fit, 12rem); */
-    /* grid-auto-rows: 200px; */
-/* min-height: 0;  /* NEW */ */
-  /* min-width: 0;  */
+    @media(min-width:50em){
+grid-column:2/5;
+}
 `;
-
-
-
-
-const RightBar = styled.div`
-
-grid-column:5/6;
-/* display:grid; */
-  
-/* grid-auto-columns:130px; */
-/* grid-auto-rows:320px; */
-  /* grid-gap:1rem; */
-/* grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); */
-/* /* grid-template-columns: repeat(3,1fr); */ */
-/*   gap:0.6rem; */
-/* grid-template-columns: repeat(auto-fit, minmax(7rem, 11px)); */
-/* max-width:100px; */
-`;
-
 
 const Wrapper = styled.div`
-/* text-align:center; */
-/* text-align:-webkit-center */
-/* display: flex; */
 display:grid;
-/* free space remove imp */
   grid-auto-rows: 100px;
 grid-template-columns: repeat(6, 20%);
-/* grid-template-columns: repeat(auto-fit, minmax(160px, 160px)); */
 `;
 const LeftBar = styled.div`
 grid-column:1/2;
-`
+`;
+const TopanimeWrapper = styled.div`
+display: none;
 
-//second Page
+`;
+const RightBarcss = styled.div`
+grid-column:1/2;
+`;
 
 function Home() {
-  //convert into useContext
   let customParams = {
     page: 1,
   }
 
   return (
     <Wrapper>
-      <LeftWrapper customParams={customParams} />
+      <SidebarWrapper>
+        <LeftWrapper customParams={customParams} />
+
+      </SidebarWrapper>
       <MainWrapper customParams={customParams} />
-      <TopAnimeList />
+
+      <SidebarWrapper>
+        <RightBar />
+      </SidebarWrapper>
     </Wrapper >
   )
 }
@@ -171,30 +147,6 @@ let MainPageWrape = ({ storeData, customParams }) => {
       </GridWrapper>
 
     </>
-  )
-}
-let TopAnimeList = () => {
-  const topAnimeList = useSelector(getTopAnime)
-  const dispatch = useDispatch()
-  useEffect(() => {
-    dispatch(fetchTopAnime({ limit: 10 }))
-  }, [])
-
-
-  return (
-    <RightBar>
-      {
-        topAnimeList?.map((data, keys) => {
-          return (
-            <>
-              <Card data={data} key={keys} />
-            </>
-          )
-
-        })
-      }
-
-    </RightBar>
   )
 }
 export default Home;
