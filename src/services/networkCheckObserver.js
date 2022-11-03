@@ -3,21 +3,14 @@ export let Subject = {
   _observers: [],
   add: function(observer) {
     this._observers.push(observer);
-    // console.log(this._observers)
   },
   getState: function() {
-    // console.log(this._observers)
     return this._state;
   },
   setState: function(value) {
     this._state = value;
-    console.log(value)
-    // console.log(this._state)
 
-    console.log(this._observers)
     for (let i = 0; i < this._observers.length; i++) {
-      console.log(value)
-      console.log(this._observers[i].signal)
       this._observers[i].signal(this);
     }
   },

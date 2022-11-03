@@ -14,17 +14,13 @@ let client = (baseUrl) => (endpoint, paramConfig, customConfig = {}) => {
       baseUrl + endpoint :
       baseUrl + endpoint + "?" + new URLSearchParams(paramConfig).toString()
     fetch(url, config).then(async res => {
-      console.log("insideeeeeeeeeeeee  reduzz")
       if (res.ok) {
         resolve(await res.json())
       } else {
-
-        console.log("redux fetch callerrrrrrrrr fix meeee")
         return reject()
       }
     }).catch((e) => {
       serverTrigger()
-      console.log("toooooooooooooooooooooooooooooooooooo", e)
     })
 
   })
