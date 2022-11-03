@@ -4,9 +4,10 @@ import produce from "immer"
 import { schedulesSlice } from "./schedulesSlice";
 import { combineReducers, configureStore, createAsyncThunk, createReducer, createSlice, current } from "@reduxjs/toolkit";
 import { animebyIdSlice } from "./animeByIdSlice";
-
+import { isOnlineSlice } from "./isOnlineSlice";
 const combinedReducer = combineReducers({
   schedulesApi: schedulesSlice.reducer,
+  isOnline: isOnlineSlice.reducer,
   quotesapi: quotesReducer,
   topAnimeList: topAnimeReducer,
   animeSearch: animeSearchReducer,

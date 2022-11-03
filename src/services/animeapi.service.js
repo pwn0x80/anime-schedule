@@ -1,8 +1,11 @@
 import { functions, isNil } from "lodash"
 import { isEmpty } from "ramda"
+import { serverTrigger } from "../swDev"
+import useCheckNetwork from "./useCheckNetwork"
 
 let client = (baseUrl) => (endpoint, paramConfig, customConfig = {}) => {
   return new Promise((resolve, reject) => {
+
     const config = {
       method: 'GET',
       ...customConfig,
@@ -11,10 +14,19 @@ let client = (baseUrl) => (endpoint, paramConfig, customConfig = {}) => {
       baseUrl + endpoint :
       baseUrl + endpoint + "?" + new URLSearchParams(paramConfig).toString()
     fetch(url, config).then(async res => {
-      res.ok ? (resolve(await res.json())) : (
-        Promise.reject(console.log(new Error(await res.text())))
-      )
+      console.log("insideeeeeeeeeeeee  reduzz")
+      if (res.ok) {
+        resolve(await res.json())
+      } else {
+
+        console.log("redux fetch callerrrrrrrrr fix meeee")
+        return reject()
+      }
+    }).catch((e) => {
+      serverTrigger()
+      console.log("toooooooooooooooooooooooooooooooooooo", e)
     })
+
   })
 
 }
@@ -45,17 +57,49 @@ function animeApi() {
 }
 
 animeApi.prototype.getSchedules = function(pg) {
-  let get = this.proxyAnime.jikan
-  return get("/schedules", pg)
+  let abortController; return (() => {
+    if (abortController) {
+      abortController.abort();
+    }
+
+    abortController = typeof 'AbortController' !== 'undefined' && new AbortController();
+
+    let get = this.proxyAnime.jikan
+    return get("/schedules", pg,
+      {
+        signal: abortController.signal,
+      })
+  })()
 }
 
 animeApi.prototype.getTopAnime = function(pg) {
-  let get = this.proxyAnime.jikan
-  return get("/top/anime", pg)
+
+  let abortController; return (() => {
+    if (abortController) {
+      abortController.abort();
+    }
+
+    abortController = typeof 'AbortController' !== 'undefined' && new AbortController();
+
+    let get = this.proxyAnime.jikan
+    return get("/top/anime", pg,
+      {
+        signal: abortController.signal,
+      })
+
+  })()
 }
 animeApi.prototype.getQuotes = function() {
-  let get = this.proxyAnime.animeChan
-  return get("/api/random")
+  let abortController; return (() => {
+    if (abortController) {
+      abortController.abort();
+    }
+    abortController = typeof 'AbortController' !== 'undefined' && new AbortController();
+    let get = this.proxyAnime.animeChan
+    return get("/api/random")
+
+
+  })()
 }
 
 animeApi.prototype.getGenres = function() {
