@@ -4,6 +4,8 @@ import { useLocation, useSearchParams } from "react-router-dom";
 import styled from "styled-components"
 import { cleanUpAnimeById, getAnimebyId } from "../../redux/animeByIdSlice";
 import { fetchById } from "../../redux/thunk";
+import animeapiService from "../../services/animeapi.service";
+import mode from "../../services/indexedDB"
 
 const Wrapper = styled.div`
 display:grid;
@@ -93,39 +95,81 @@ text-transform: capitalize;
 
 }
 `;
+
 const AnimeDetail = () => {
+  const [isBookmark, setIsBookmark] = useState(true)
   const animeData = useSelector(getAnimebyId)
   const location = useLocation();
   const dispatch = useDispatch()
+  let endpoint = window.location.pathname
+  let animeId = endpoint.replace('/', '')
   useEffect(() => {
-    let endpoint = window.location.pathname
-    let animeId = endpoint.replace('/', '')
     dispatch(fetchById(animeId))
     return (
       () => dispatch(cleanUpAnimeById())
     )
   }, [location])
+
+  useEffect(() => {
+    mode().then((store) => {
+      store.dataViewdb(animeId).onsuccess = (event) => {
+        setIsBookmark(event.target.result == undefined ? true : false)
+      }
+    })
+  }, [])
+  let putData = () => {
+    return {
+      id: animeData.mal_id.toString(),
+      animeName: animeData.title,
+      broadcast: animeData.broadcast
+    }
+  }
+  let addDB = (store) => {
+    if (animeData == undefined) return
+    mode().then((store) => {
+      store.dataPutdb(putData())
+      setIsBookmark(false)
+    })
+  }
+  let removeDB = async () => {
+    mode().then((store) => {
+      store.dataDeletedb(animeId)
+      setIsBookmark(true)
+    })
+  }
   return (
     <>
+
       <BgWrapper url={animeData?.images?.webp?.image_url} ></BgWrapper>
       <BgColorWrapper></BgColorWrapper>
-      <Wrapper >
-        <Img src={animeData?.images?.webp?.image_url} />
-        <TitleWrapper>{animeData?.title}</TitleWrapper>
-        <InfoWrapper>
-          <InfoBlockWrapper>
-            <InfoBlock>rank: {animeData?.rank}</InfoBlock>
-            <InfoBlock>type: {animeData?.type}</InfoBlock>
-            <InfoBlock>Status: {animeData?.airing ? "Currently airing" : "Finished Airing"}</InfoBlock>
-            <InfoBlock>rate: {animeData?.rating}</InfoBlock>
-            <InfoBlock>score: {animeData?.score}</InfoBlock>
-            <InfoBlock>duration: {animeData?.duration}</InfoBlock>
-          </InfoBlockWrapper>
-        </InfoWrapper>
-        <AirWrapper><span>aired from-</span> {animeData?.aired.from ? animeData?.aired.from : "???"}</AirWrapper>
-        <AirWrapper><span>to-</span> {animeData?.aired.to ? animeData?.aired.from : "???"}</AirWrapper>
-        <SynopsisWrapper>{animeData?.synopsis}</SynopsisWrapper>
-      </Wrapper>
+
+      {animeData == undefined ? <div style={{ color: 'white' }} >no data available </div> :
+        <Wrapper >
+          <Img src={animeData?.images?.webp?.image_url} />
+          <TitleWrapper>{animeData?.title}</TitleWrapper>
+
+          <InfoWrapper>
+            <button onClick={isBookmark ? addDB : removeDB} >
+              {isBookmark ? "bookmark" : "bookmark remove"}
+            </button>
+
+
+            <InfoBlockWrapper>
+              <InfoBlock>rank: {animeData?.rank}</InfoBlock>
+              <InfoBlock>type: {animeData?.type}</InfoBlock>
+              <InfoBlock>Status: {animeData?.airing ? "Currently airing" : "Finished Airing"}</InfoBlock>
+              <InfoBlock>rate: {animeData?.rating}</InfoBlock>
+              <InfoBlock>score: {animeData?.score}</InfoBlock>
+              <InfoBlock>duration: {animeData?.duration}</InfoBlock>
+            </InfoBlockWrapper>
+
+          </InfoWrapper>
+          <AirWrapper><span>aired from-</span> {animeData?.aired.from ? animeData?.aired.from : "???"}</AirWrapper>
+          <AirWrapper><span>to-</span> {animeData?.aired.to ? animeData?.aired.from : "???"}</AirWrapper>
+          <SynopsisWrapper>{animeData?.synopsis}</SynopsisWrapper>
+        </Wrapper>
+
+      }
     </>
   )
 }

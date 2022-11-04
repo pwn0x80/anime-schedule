@@ -5,7 +5,8 @@ let fontName = `fontCache`;
 let imgName = `imageCache`;
 
 
-let assets = ['appsw.js', '/', '/static/js/bundle.js', '/manifest.json', '/404.jsx', 'offline.html', '/fail.js']
+let assets = ['appsw.js', '/', '/static/js/bundle.js', '/manifest.json', '/404.jsx', 'offline.html', '/fail.js', "/App.js"]
+
 
 
 let imgAssets = [

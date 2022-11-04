@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import styled from "styled-components";
 import { animeSearch } from "../redux/reducers";
 import { fetchAnimeSearch } from "../redux/thunk";
+import Bookmark from "../components/bookmark/Bookmark";
 
 
 let SearchListtopbar = styled.div`
@@ -60,6 +61,18 @@ export default function() {
     }
 
   }
+
+  const handleClick = (e) => {
+
+    let navBartoggle = ref.current.getAttribute('data-visible');
+    if (ref.current.getAttribute('data-visible') === 'true') {
+      ref.current.setAttribute('data-visible', 'false');
+    } else if (ref.current.getAttribute('data-visible') === 'false') {
+
+      ref.current.setAttribute('data-visible', 'true');
+    }
+  };
+
   useEffect(() => {
     window.addEventListener("mouseup", clickOutside);
 
@@ -104,6 +117,7 @@ export default function() {
             } onKeyPress={keypress} />
 
           </div>
+
           <SuggestionPopup isvisible={isVisible} >
             <SearchListtopbar  >
               {
@@ -120,18 +134,18 @@ export default function() {
           </SuggestionPopup>
         </div>
       </div>
-      <div className="mob-nav-bar" style={{ color: "white" }}  >
-
-
+      <div className="mob-nav-bar" style={{ color: "white" }} onClick={handleClick}  >
       </div>
 
-      <div className={"nav--wrapper"} data-visible="false">
+      <div className={"nav--wrapper"} ref={ref} data-visible="false" >
         <div className="ranklist--wrapper">
           <div className="inner--left--wrapper">
-            <div className="iconName">
-              < IconMiddleware Icon={"awardIcon"} classStyle={('rankerList')} />
-              <span className="spanText">Ranking</span>
-            </div>
+            <Link to={"/bookmark"}>
+              <div className="iconName">
+                < IconMiddleware Icon={"awardIcon"} classStyle={('rankerList')} />
+                <span className="spanText">Bookmark</span>
+              </div>
+            </Link>
             <div className="iconName">
               < IconMiddleware Icon={"trendingIcon"} classStyle={('rankerList')} />
               <span className="spanText">Popular</span>
@@ -139,10 +153,6 @@ export default function() {
             <div className="iconName">
               < IconMiddleware Icon={"randomIcon"} classStyle={('rankerList')} />
               <span className="spanText">Popular</span>
-            </div>
-            <div className="iconName"  >
-              < IconMiddleware Icon={"uploadIcon"} classStyle={('rankerList')} />
-              <span className="spanText"  >Upload</span>
             </div>
           </div>
         </div>
@@ -155,6 +165,7 @@ export default function() {
           </div>
         </div>
       </div>
+
     </div >
   );
 }

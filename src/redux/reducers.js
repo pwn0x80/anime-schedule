@@ -9,7 +9,6 @@ let animeSearchInitialState = {
 
 let animeSearchReducer = createReducer(animeSearchInitialState, (builder) => {
   builder.addCase(fetchAnimeSearch.fulfilled, (state, action) => {
-    console.log(action)
     state.searchDetail = action.payload
   })
   builder.addCase(fetchAnimeSearchList.fulfilled, (state, action) => {

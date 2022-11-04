@@ -17,7 +17,7 @@ const useSwDevs = () => {
   }
 
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('https://animeschedule.vercel.app/serviceWorker.js', {
+    navigator.serviceWorker.register('http://localhost:3000/serviceWorker.js', {
       updateViaCache: 'none',
       scope: '/',
     }).then(

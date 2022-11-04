@@ -24,6 +24,7 @@ display:block;
 
 const GridWrapper = styled.div`
 display: grid;
+    grid-auto-rows: min-content;
 grid-gap:0.5rem;
 grid-column: 1/6;
       grid-template-columns: repeat(auto-fill, minmax(min(400px/1, max(64px, 800px/5)), 1fr));
@@ -34,7 +35,7 @@ grid-column:2/5;
 
 const Wrapper = styled.div`
 display:grid;
-  grid-auto-rows: 100px;
+  /* grid-auto-rows: 100px; */
 grid-template-columns: repeat(6, 20%);
 `;
 const LeftBar = styled.div`
@@ -116,7 +117,6 @@ let MainPageWrape = ({ storeData, customParams }) => {
   const dispatch = useDispatch()
   const { scrollFetch, setScrollFetch, InfiniteScroll } = useInfiniteScroller()
   useEffect(() => {
-    console.log("hi")
     if (storeData.pagination.has_next_page == false) return
     dispatch(fetchSchedules(customParams))
     customParams.page = customParams.page + 1
